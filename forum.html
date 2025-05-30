@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn đàn - EduTeach</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduTeach</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Bảng điều khiển</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="courses.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        <span>Khóa học</span>
+                        <span class="badge">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="assignments.html" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Bài tập</span>
+                        <span class="badge">38</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="exams.html" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Kỳ thi</span>
+                        <span class="badge">8</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="webinars.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Webinar</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="students.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Học viên</span>
+                        <span class="badge">245</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="library.html" class="nav-link">
+                        <i class="fas fa-book-open"></i>
+                        <span>Thư viện</span>
+                        <span class="badge">156</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        <span>Diễn đàn</span>
+                        <span class="badge">28</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Cài đặt</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile sidebar-avatar">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">GS. Nguyễn Văn A</span>
+                    <span class="user-role">Giảng viên</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Diễn đàn</h1>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm chủ đề...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="action-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    
+                    <div class="user-menu">
+                        <button class="user-menu-btn header-avatar" id="userMenuBtn">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Avatar" class="user-avatar-small">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Hồ sơ</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Forum Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <div>
+                    <h2>Diễn đàn thảo luận</h2>
+                    <p>Không gian trao đổi và thảo luận học tập</p>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-filter"></i>
+                        Lọc chủ đề
+                    </button>
+                    <button class="btn btn-primary" onclick="openCreateTopicModal()">
+                        <i class="fas fa-plus"></i>
+                        Tạo chủ đề mới
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>128</h3>
+                        <p>Tổng chủ đề</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-reply"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,456</h3>
+                        <p>Bình luận</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8,234</h3>
+                        <p>Lượt xem</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>89</h3>
+                        <p>Thành viên hoạt động</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forum Categories -->
+            <div class="forum-categories">
+                <div class="categories-header">
+                    <h3>Danh mục thảo luận</h3>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="general">
+                        <div class="category-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Thảo luận chung</h4>
+                            <p>Các chủ đề thảo luận tổng quát về khóa học</p>
+                            <div class="category-stats">45 chủ đề • 234 bình luận</div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="qa">
+                        <div class="category-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Hỏi đáp</h4>
+                            <p>Đặt câu hỏi và nhận hỗ trợ từ cộng đồng</p>
+                            <div class="category-stats">67 chủ đề • 456 bình luận</div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="projects">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Dự án</h4>
+                            <p>Chia sẻ và thảo luận về các dự án</p>
+                            <div class="category-stats">23 chủ đề • 189 bình luận</div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card" data-category="announcements">
+                        <div class="category-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Thông báo</h4>
+                            <p>Thông báo quan trọng từ giảng viên</p>
+                            <div class="category-stats">8 chủ đề • 45 bình luận</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Topics -->
+            <div class="recent-topics">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Chủ đề gần đây</h3>
+                        <div class="forum-filters">
+                            <button class="btn btn-outline btn-sm">Mới nhất</button>
+                            <button class="btn btn-outline btn-sm">Phổ biến</button>
+                            <button class="btn btn-outline btn-sm">Chưa trả lời</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="topics-list">
+                            <!-- Topic 1 -->
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Avatar">
+                                </div>
+                                <div class="topic-content">
+                                    <h4>Làm thế nào để tối ưu hóa performance React app?</h4>
+                                    <div class="topic-meta">
+                                        <span class="author">Nguyễn Thị B</span>
+                                        <span>•</span>
+                                        <span>2 giờ trước</span>
+                                        <span>•</span>
+                                        <span class="category">Hỏi đáp</span>
+                                        <span class="pinned">
+                                            <i class="fas fa-thumbtack"></i>
+                                            Ghim
+                                        </span>
+                                    </div>
+                                    <div class="topic-excerpt">
+                                        Mình đang gặp vấn đề về performance khi ứng dụng React có quá nhiều component render. Có ai có kinh nghiệm về việc tối ưu hóa không ạ?
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>156</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-reply"></i>
+                                        <span>23</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Topic 2 -->
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Avatar">
+                                </div>
+                                <div class="topic-content">
+                                    <h4>Chia sẻ dự án Todo App với Redux Toolkit</h4>
+                                    <div class="topic-meta">
+                                        <span class="author">Trần Văn C</span>
+                                        <span>•</span>
+                                        <span>5 giờ trước</span>
+                                        <span>•</span>
+                                        <span class="category">Dự án</span>
+                                    </div>
+                                    <div class="topic-excerpt">
+                                        Mình vừa hoàn thành dự án Todo App sử dụng Redux Toolkit. Mọi người có thể xem và góp ý không ạ?
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>89</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-reply"></i>
+                                        <span>12</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Topic 3 -->
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Avatar">
+                                </div>
+                                <div class="topic-content">
+                                    <h4>Thông báo: Lịch thi cuối kỳ đã được cập nhật</h4>
+                                    <div class="topic-meta">
+                                        <span class="author">GS. Nguyễn Văn A</span>
+                                        <span>•</span>
+                                        <span>1 ngày trước</span>
+                                        <span>•</span>
+                                        <span class="category">Thông báo</span>
+                                        <span class="pinned">
+                                            <i class="fas fa-thumbtack"></i>
+                                            Ghim
+                                        </span>
+                                    </div>
+                                    <div class="topic-excerpt">
+                                        Lịch thi cuối kỳ đã được cập nhật. Các bạn vui lòng kiểm tra lại thời gian và địa điểm thi.
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>245</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-reply"></i>
+                                        <span>8</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Topic 4 -->
+                            <div class="topic-item">
+                                <div class="topic-avatar">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar">
+                                </div>
+                                <div class="topic-content">
+                                    <h4>Tài liệu tham khảo về Node.js và Express</h4>
+                                    <div class="topic-meta">
+                                        <span class="author">Lê Thị D</span>
+                                        <span>•</span>
+                                        <span>2 ngày trước</span>
+                                        <span>•</span>
+                                        <span class="category">Thảo luận chung</span>
+                                    </div>
+                                    <div class="topic-excerpt">
+                                        Mình tổng hợp một số tài liệu hay về Node.js và Express. Hy vọng sẽ hữu ích cho mọi người.
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>178</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-reply"></i>
+                                        <span>15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Topic Modal -->
+    <div class="modal" id="createTopicModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tạo chủ đề mới</h3>
+                <button class="modal-close" onclick="closeCreateTopicModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createTopicForm">
+                    <div class="form-group">
+                        <label for="topicTitle">Tiêu đề chủ đề</label>
+                        <input type="text" id="topicTitle" name="topicTitle" required placeholder="Nhập tiêu đề chủ đề...">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="topicCategory">Danh mục</label>
+                            <select id="topicCategory" name="topicCategory" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="general">Thảo luận chung</option>
+                                <option value="qa">Hỏi đáp</option>
+                                <option value="projects">Dự án</option>
+                                <option value="announcements">Thông báo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="topicTags">Tags</label>
+                            <input type="text" id="topicTags" name="topicTags" placeholder="javascript, react, nodejs...">
+                            <div class="form-hint">Phân cách bằng dấu phẩy</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="topicContent">Nội dung</label>
+                        <textarea id="topicContent" name="topicContent" rows="6" required placeholder="Viết nội dung chủ đề..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="isPinned" name="isPinned">
+                            <span class="checkmark"></span>
+                            Ghim chủ đề (chỉ dành cho giảng viên)
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeCreateTopicModal()">Hủy</button>
+                <button type="submit" form="createTopicForm" class="btn btn-primary">Tạo chủ đề</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

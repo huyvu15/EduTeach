@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện - EduTeach</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduTeach</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Bảng điều khiển</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="courses.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        <span>Khóa học</span>
+                        <span class="badge">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="assignments.html" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Bài tập</span>
+                        <span class="badge">38</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="exams.html" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Kỳ thi</span>
+                        <span class="badge">8</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="webinars.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Webinar</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="students.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Học viên</span>
+                        <span class="badge">245</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="library.html" class="nav-link">
+                        <i class="fas fa-book-open"></i>
+                        <span>Thư viện</span>
+                        <span class="badge">156</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        <span>Diễn đàn</span>
+                        <span class="badge">28</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Cài đặt</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile sidebar-avatar">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">GS. Nguyễn Văn A</span>
+                    <span class="user-role">Giảng viên</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Thư viện</h1>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm tài liệu...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="action-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    
+                    <div class="user-menu">
+                        <button class="user-menu-btn header-avatar" id="userMenuBtn">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Avatar" class="user-avatar-small">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#"><i class="fas fa-user"></i> Hồ sơ</a>
+                            <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Library Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <div>
+                    <h2>Thư viện tài liệu</h2>
+                    <p>Quản lý và chia sẻ tài liệu học tập</p>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-download"></i>
+                        Tải xuống hàng loạt
+                    </button>
+                    <button class="btn btn-primary" onclick="openUploadModal()">
+                        <i class="fas fa-upload"></i>
+                        Tải lên tài liệu
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>156</h3>
+                        <p>Tổng tài liệu</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2,847</h3>
+                        <p>Lượt xem</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,234</h3>
+                        <p>Lượt tải</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>23</h3>
+                        <p>Mới tuần này</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Library Navigation -->
+            <div class="library-navigation">
+                <div class="categories-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Danh mục</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="category-list">
+                                <button class="category-btn active" data-category="all">
+                                    <i class="fas fa-th"></i>
+                                    <span>Tất cả</span>
+                                </button>
+                                <button class="category-btn" data-category="videos">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Video bài giảng</span>
+                                </button>
+                                <button class="category-btn" data-category="documents">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Tài liệu PDF</span>
+                                </button>
+                                <button class="category-btn" data-category="presentations">
+                                    <i class="fas fa-file-powerpoint"></i>
+                                    <span>Bài thuyết trình</span>
+                                </button>
+                                <button class="category-btn" data-category="exercises">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>Bài tập mẫu</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <select class="filter-select">
+                            <option value="">Sắp xếp theo</option>
+                            <option value="name">Tên A-Z</option>
+                            <option value="date">Ngày tải lên</option>
+                            <option value="views">Lượt xem</option>
+                            <option value="downloads">Lượt tải</option>
+                        </select>
+                        
+                        <select class="filter-select">
+                            <option value="">Loại tệp</option>
+                            <option value="pdf">PDF</option>
+                            <option value="video">Video</option>
+                            <option value="ppt">PowerPoint</option>
+                            <option value="zip">ZIP</option>
+                        </select>
+                        
+                        <button class="btn btn-outline">
+                            <i class="fas fa-filter"></i>
+                            Lọc
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Documents Grid -->
+            <div class="library-grid">
+                <!-- Document 1 -->
+                <div class="document-card">
+                    <div class="document-preview">
+                        <i class="fas fa-play-circle file-icon video"></i>
+                        <span class="file-type">MP4</span>
+                        <span class="video-duration">15:30</span>
+                    </div>
+                    <div class="document-info">
+                        <h3>Giới thiệu về JavaScript</h3>
+                        <p>Video bài giảng cơ bản về JavaScript cho người mới bắt đầu</p>
+                        <div class="document-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>GS. Nguyễn Văn A</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>15/12/2023</span>
+                            </div>
+                        </div>
+                        <div class="document-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>245 lượt xem</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-download"></i>
+                                <span>89 lượt tải</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-play"></i>
+                                Xem
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-download"></i>
+                                Tải xuống
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Document 2 -->
+                <div class="document-card">
+                    <div class="document-preview">
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        <span class="file-type">PDF</span>
+                    </div>
+                    <div class="document-info">
+                        <h3>Tài liệu HTML & CSS</h3>
+                        <p>Hướng dẫn chi tiết về HTML và CSS từ cơ bản đến nâng cao</p>
+                        <div class="document-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>GS. Nguyễn Văn A</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>12/12/2023</span>
+                            </div>
+                        </div>
+                        <div class="document-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>189 lượt xem</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-download"></i>
+                                <span>156 lượt tải</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-eye"></i>
+                                Xem
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-download"></i>
+                                Tải xuống
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Document 3 -->
+                <div class="document-card">
+                    <div class="document-preview">
+                        <i class="fas fa-file-powerpoint file-icon presentation"></i>
+                        <span class="file-type">PPTX</span>
+                    </div>
+                    <div class="document-info">
+                        <h3>Slide bài giảng React</h3>
+                        <p>Bài thuyết trình về React hooks và state management</p>
+                        <div class="document-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>GS. Nguyễn Văn A</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>10/12/2023</span>
+                            </div>
+                        </div>
+                        <div class="document-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>134 lượt xem</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-download"></i>
+                                <span>98 lượt tải</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-eye"></i>
+                                Xem
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-download"></i>
+                                Tải xuống
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Document 4 -->
+                <div class="document-card">
+                    <div class="document-preview">
+                        <i class="fas fa-file-archive file-icon code"></i>
+                        <span class="file-type">ZIP</span>
+                    </div>
+                    <div class="document-info">
+                        <h3>Source code bài tập</h3>
+                        <p>Mã nguồn hoàn chỉnh cho các bài tập JavaScript</p>
+                        <div class="document-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>GS. Nguyễn Văn A</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>08/12/2023</span>
+                            </div>
+                        </div>
+                        <div class="document-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>267 lượt xem</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-download"></i>
+                                <span>201 lượt tải</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-eye"></i>
+                                Xem
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-download"></i>
+                                Tải xuống
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upload Document Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tải lên tài liệu</h3>
+                <button class="modal-close" onclick="closeUploadModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadForm">
+                    <div class="avatar-upload-area" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">Kéo thả tệp vào đây hoặc click để chọn</div>
+                        <div class="upload-hint">Hỗ trợ: PDF, DOC, PPT, MP4, ZIP (Tối đa 100MB)</div>
+                        <input type="file" id="fileInput" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.mp4,.zip">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentTitle">Tiêu đề tài liệu</label>
+                        <input type="text" id="documentTitle" name="documentTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documentDescription">Mô tả</label>
+                        <textarea id="documentDescription" name="documentDescription" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="documentCategory">Danh mục</label>
+                            <select id="documentCategory" name="documentCategory" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="videos">Video bài giảng</option>
+                                <option value="documents">Tài liệu PDF</option>
+                                <option value="presentations">Bài thuyết trình</option>
+                                <option value="exercises">Bài tập mẫu</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="documentCourse">Khóa học</label>
+                            <select id="documentCourse" name="documentCourse">
+                                <option value="">Chọn khóa học</option>
+                                <option value="javascript">JavaScript cơ bản</option>
+                                <option value="react">React Advanced</option>
+                                <option value="nodejs">Node.js Backend</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="isPublic" name="isPublic">
+                            <span class="checkmark"></span>
+                            Công khai cho tất cả học viên
+                        </label>
+                        <div class="form-hint">Nếu không chọn, chỉ học viên trong khóa học được chọn mới có thể truy cập</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeUploadModal()">Hủy</button>
+                <button type="submit" form="uploadForm" class="btn btn-primary">Tải lên</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

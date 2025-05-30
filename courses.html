@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý khóa học - EduTeach</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+          <div class="logo">
+              <i class="fas fa-graduation-cap"></i>
+              <span>EduTeach</span>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">
+              <i class="fas fa-bars"></i>
+          </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+          <ul class="nav-list">
+              <li class="nav-item">
+                  <a href="dashboard.html" class="nav-link">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Bảng điều khiển</span>
+                  </a>
+              </li>
+              <li class="nav-item active">
+                  <a href="courses.html" class="nav-link">
+                      <i class="fas fa-book"></i>
+                      <span>Khóa học</span>
+                      <span class="badge">12</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="assignments.html" class="nav-link">
+                      <i class="fas fa-tasks"></i>
+                      <span>Bài tập</span>
+                      <span class="badge">38</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="exams.html" class="nav-link">
+                      <i class="fas fa-file-alt"></i>
+                      <span>Kỳ thi</span>
+                      <span class="badge">8</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="webinars.html" class="nav-link">
+                      <i class="fas fa-video"></i>
+                      <span>Webinar</span>
+                      <span class="badge">5</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="students.html" class="nav-link">
+                      <i class="fas fa-users"></i>
+                      <span>Học viên</span>
+                      <span class="badge">245</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="library.html" class="nav-link">
+                      <i class="fas fa-book-open"></i>
+                      <span>Thư viện</span>
+                      <span class="badge">156</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="forum.html" class="nav-link">
+                      <i class="fas fa-comments"></i>
+                      <span>Diễn đàn</span>
+                      <span class="badge">28</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="settings.html" class="nav-link">
+                      <i class="fas fa-cog"></i>
+                      <span>Cài đặt</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+          <div class="user-profile">
+              <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+              <div class="user-info">
+                  <span class="user-name">GS. Nguyễn Văn A</span>
+                  <span class="user-role">Giảng viên</span>
+              </div>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+          </button>
+      </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+          <div class="header-left">
+              <button class="mobile-menu-btn" id="mobileMenuBtn">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <h1>Quản lý khóa học</h1>
+          </div>
+          
+          <div class="header-right">
+              <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Tìm kiếm khóa học...">
+              </div>
+              
+              <div class="header-actions">
+                  <button class="action-btn notification-btn">
+                      <i class="fas fa-bell"></i>
+                      <span class="notification-count">3</span>
+                  </button>
+                  
+                  <div class="user-menu">
+                      <button class="user-menu-btn" id="userMenuBtn">
+                          <img src="https://via.placeholder.com/32" alt="Avatar" class="user-avatar-small">
+                          <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="user-dropdown" id="userDropdown">
+                          <a href="#"><i class="fas fa-user"></i> Hồ sơ</a>
+                          <a href="#"><i class="fas fa-cog"></i> Cài đặt</a>
+                          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      
+      <!-- Courses Content -->
+      <div class="dashboard-content">
+          <div class="page-header">
+              <div>
+                  <h2>Danh sách khóa học</h2>
+                  <p>Quản lý tất cả khóa học của bạn</p>
+              </div>
+              <button class="btn btn-primary" onclick="openCreateCourseModal()">
+                  <i class="fas fa-plus"></i>
+                  Tạo khóa học mới
+              </button>
+          </div>
+          
+          <!-- Course Stats -->
+          <div class="stats-grid">
+              <div class="stat-card">
+                  <div class="stat-icon">
+                      <i class="fas fa-book"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>12</h3>
+                      <p>Tổng khóa học</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                      <i class="fas fa-chalkboard-teacher"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>8</h3>
+                      <p>Đang hoạt động</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                      <i class="fas fa-users"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>245</h3>
+                      <p>Tổng học viên</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>4.8</h3>
+                      <p>Đánh giá TB</p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Filters -->
+          <div class="filters-section">
+              <div class="filter-group">
+                  <select class="filter-select">
+                      <option value="">Tất cả trạng thái</option>
+                      <option value="active">Đang hoạt động</option>
+                      <option value="draft">Bản nháp</option>
+                      <option value="completed">Đã hoàn thành</option>
+                  </select>
+                  
+                  <select class="filter-select">
+                      <option value="">Tất cả danh mục</option>
+                      <option value="programming">Lập trình</option>
+                      <option value="design">Thiết kế</option>
+                      <option value="marketing">Marketing</option>
+                  </select>
+                  
+                  <button class="btn btn-outline">
+                      <i class="fas fa-filter"></i>
+                      Lọc
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Courses Grid -->
+          <div class="courses-grid">
+              <!-- Course 1 -->
+              <div class="course-card">
+                  <div class="course-image">
+                      <img src="https://via.placeholder.com/300x180" alt="Course">
+                      <div class="course-badge active">Đang hoạt động</div>
+                  </div>
+                  <div class="course-content">
+                      <h3>JavaScript cơ bản</h3>
+                      <p>Khóa học dành cho người mới bắt đầu với JavaScript</p>
+                      <div class="course-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>45 học viên</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-clock"></i>
+                              <span>24 giờ</span>
+                          </div>
+                      </div>
+                      <div class="course-progress">
+                          <div class="progress-bar">
+                              <div class="progress-fill" style="width: 75%"></div>
+                          </div>
+                          <span class="progress-text">75% hoàn thành</span>
+                      </div>
+                      <div class="course-actions">
+                          <button class="btn btn-outline btn-sm">
+                              <i class="fas fa-edit"></i>
+                              Sửa
+                          </button>
+                          <button class="btn btn-primary btn-sm">
+                              <i class="fas fa-eye"></i>
+                              Xem
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Course 2 -->
+              <div class="course-card">
+                  <div class="course-image">
+                      <img src="https://via.placeholder.com/300x180" alt="Course">
+                      <div class="course-badge active">Đang hoạt động</div>
+                  </div>
+                  <div class="course-content">
+                      <h3>React Advanced</h3>
+                      <p>Khóa học nâng cao về React và Redux</p>
+                      <div class="course-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>32 học viên</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-clock"></i>
+                              <span>36 giờ</span>
+                          </div>
+                      </div>
+                      <div class="course-progress">
+                          <div class="progress-bar">
+                              <div class="progress-fill" style="width: 60%"></div>
+                          </div>
+                          <span class="progress-text">60% hoàn thành</span>
+                      </div>
+                      <div class="course-actions">
+                          <button class="btn btn-outline btn-sm">
+                              <i class="fas fa-edit"></i>
+                              Sửa
+                          </button>
+                          <button class="btn btn-primary btn-sm">
+                              <i class="fas fa-eye"></i>
+                              Xem
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Course 3 -->
+              <div class="course-card">
+                  <div class="course-image">
+                      <img src="https://via.placeholder.com/300x180" alt="Course">
+                      <div class="course-badge draft">Bản nháp</div>
+                  </div>
+                  <div class="course-content">
+                      <h3>Node.js Backend</h3>
+                      <p>Xây dựng backend với Node.js và Express</p>
+                      <div class="course-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>0 học viên</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-clock"></i>
+                              <span>30 giờ</span>
+                          </div>
+                      </div>
+                      <div class="course-progress">
+                          <div class="progress-bar">
+                              <div class="progress-fill" style="width: 20%"></div>
+                          </div>
+                          <span class="progress-text">20% hoàn thành</span>
+                      </div>
+                      <div class="course-actions">
+                          <button class="btn btn-outline btn-sm">
+                              <i class="fas fa-edit"></i>
+                              Sửa
+                          </button>
+                          <button class="btn btn-primary btn-sm">
+                              <i class="fas fa-eye"></i>
+                              Xem
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Course 4 -->
+              <div class="course-card">
+                  <div class="course-image">
+                      <img src="https://via.placeholder.com/300x180" alt="Course">
+                      <div class="course-badge completed">Đã hoàn thành</div>
+                  </div>
+                  <div class="course-content">
+                      <h3>UI/UX Design</h3>
+                      <p>Thiết kế giao diện người dùng hiện đại</p>
+                      <div class="course-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>28 học viên</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-clock"></i>
+                              <span>40 giờ</span>
+                          </div>
+                      </div>
+                      <div class="course-progress">
+                          <div class="progress-bar">
+                              <div class="progress-fill completed" style="width: 100%"></div>
+                          </div>
+                          <span class="progress-text">100% hoàn thành</span>
+                      </div>
+                      <div class="course-actions">
+                          <button class="btn btn-outline btn-sm">
+                              <i class="fas fa-edit"></i>
+                              Sửa
+                          </button>
+                          <button class="btn btn-primary btn-sm">
+                              <i class="fas fa-eye"></i>
+                              Xem
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+  
+  <!-- Create Course Modal -->
+  <div class="modal" id="createCourseModal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>Tạo khóa học mới</h3>
+              <button class="modal-close" onclick="closeCreateCourseModal()">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="createCourseForm">
+                  <div class="form-group">
+                      <label for="courseTitle">Tên khóa học</label>
+                      <input type="text" id="courseTitle" name="courseTitle" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="courseDescription">Mô tả</label>
+                      <textarea id="courseDescription" name="courseDescription" rows="4"></textarea>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="courseCategory">Danh mục</label>
+                          <select id="courseCategory" name="courseCategory" required>
+                              <option value="">Chọn danh mục</option>
+                              <option value="programming">Lập trình</option>
+                              <option value="design">Thiết kế</option>
+                              <option value="marketing">Marketing</option>
+                          </select>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="courseLevel">Cấp độ</label>
+                          <select id="courseLevel" name="courseLevel" required>
+                              <option value="">Chọn cấp độ</option>
+                              <option value="beginner">Cơ bản</option>
+                              <option value="intermediate">Trung cấp</option>
+                              <option value="advanced">Nâng cao</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="courseDuration">Thời lượng (giờ)</label>
+                          <input type="number" id="courseDuration" name="courseDuration" min="1" required>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="coursePrice">Giá (VND)</label>
+                          <input type="number" id="coursePrice" name="coursePrice" min="0" required>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="courseImage">Ảnh khóa học</label>
+                      <input type="file" id="courseImage" name="courseImage" accept="image/*">
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline" onclick="closeCreateCourseModal()">Hủy</button>
+              <button type="submit" form="createCourseForm" class="btn btn-primary">Tạo khóa học</button>
+          </div>
+      </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

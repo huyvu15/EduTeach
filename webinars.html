@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Webinar - EduTeach</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+          <div class="logo">
+              <i class="fas fa-graduation-cap"></i>
+              <span>EduTeach</span>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">
+              <i class="fas fa-bars"></i>
+          </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+          <ul class="nav-list">
+              <li class="nav-item">
+                  <a href="dashboard.html" class="nav-link">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Bảng điều khiển</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="courses.html" class="nav-link">
+                      <i class="fas fa-book"></i>
+                      <span>Khóa học</span>
+                      <span class="badge">12</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="assignments.html" class="nav-link">
+                      <i class="fas fa-tasks"></i>
+                      <span>Bài tập</span>
+                      <span class="badge">38</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="exams.html" class="nav-link">
+                      <i class="fas fa-file-alt"></i>
+                      <span>Kỳ thi</span>
+                      <span class="badge">8</span>
+                  </a>
+              </li>
+              <li class="nav-item active">
+                  <a href="webinars.html" class="nav-link">
+                      <i class="fas fa-video"></i>
+                      <span>Webinar</span>
+                      <span class="badge">5</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="students.html" class="nav-link">
+                      <i class="fas fa-users"></i>
+                      <span>Học viên</span>
+                      <span class="badge">245</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="library.html" class="nav-link">
+                      <i class="fas fa-book-open"></i>
+                      <span>Thư viện</span>
+                      <span class="badge">156</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="forum.html" class="nav-link">
+                      <i class="fas fa-comments"></i>
+                      <span>Diễn đàn</span>
+                      <span class="badge">28</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="settings.html" class="nav-link">
+                      <i class="fas fa-cog"></i>
+                      <span>Cài đặt</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+          <div class="user-profile">
+              <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+              <div class="user-info">
+                  <span class="user-name">GS. Nguyễn Văn A</span>
+                  <span class="user-role">Giảng viên</span>
+              </div>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+          </button>
+      </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+          <div class="header-left">
+              <button class="mobile-menu-btn" id="mobileMenuBtn">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <h1>Quản lý Webinar</h1>
+          </div>
+          
+          <div class="header-right">
+              <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Tìm kiếm webinar...">
+              </div>
+              
+              <div class="header-actions">
+                  <button class="action-btn notification-btn">
+                      <i class="fas fa-bell"></i>
+                      <span class="notification-count">3</span>
+                  </button>
+                  
+                  <div class="user-menu">
+                      <button class="user-menu-btn" id="userMenuBtn">
+                          <img src="https://via.placeholder.com/32" alt="Avatar" class="user-avatar-small">
+                          <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="user-dropdown" id="userDropdown">
+                          <a href="#"><i class="fas fa-user"></i> Hồ sơ</a>
+                          <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      
+      <!-- Webinars Content -->
+      <div class="dashboard-content">
+          <div class="page-header">
+              <div>
+                  <h2>Danh sách Webinar</h2>
+                  <p>Quản lý các buổi học trực tuyến và hội thảo</p>
+              </div>
+              <button class="btn btn-primary" onclick="openCreateWebinarModal()">
+                  <i class="fas fa-plus"></i>
+                  Tạo Webinar mới
+              </button>
+          </div>
+          
+          <!-- Webinar Stats -->
+          <div class="stats-grid">
+              <div class="stat-card">
+                  <div class="stat-icon">
+                      <i class="fas fa-video"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>5</h3>
+                      <p>Tổng Webinar</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                      <i class="fas fa-broadcast-tower"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>1</h3>
+                      <p>Đang phát trực tiếp</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                      <i class="fas fa-users"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>156</h3>
+                      <p>Tổng người tham gia</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                      <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>24</h3>
+                      <p>Giờ phát sóng</p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Webinar Calendar -->
+          <div class="webinar-calendar">
+              <div class="card">
+                  <div class="card-header">
+                      <h3>Lịch Webinar tuần này</h3>
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-calendar"></i>
+                          Xem lịch đầy đủ
+                      </button>
+                  </div>
+                  <div class="card-body">
+                      <div class="calendar-events">
+                          <div class="event-item live">
+                              <div class="event-time">
+                                  <span class="time">14:00</span>
+                                  <span class="date">Hôm nay</span>
+                              </div>
+                              <div class="event-content">
+                                  <h4>JavaScript ES6+ Features</h4>
+                                  <p>Tìm hiểu các tính năng mới của JavaScript</p>
+                                  <div class="event-meta">
+                                      <span class="live-badge">
+                                          <i class="fas fa-circle"></i>
+                                          LIVE
+                                      </span>
+                                      <span>45 người tham gia</span>
+                                  </div>
+                              </div>
+                              <div class="event-actions">
+                                  <button class="btn btn-primary btn-sm">
+                                      <i class="fas fa-video"></i>
+                                      Tham gia
+                                  </button>
+                              </div>
+                          </div>
+                          
+                          <div class="event-item upcoming">
+                              <div class="event-time">
+                                  <span class="time">10:00</span>
+                                  <span class="date">Thứ 6</span>
+                              </div>
+                              <div class="event-content">
+                                  <h4>React Hooks Deep Dive</h4>
+                                  <p>Khám phá sâu về React Hooks và best practices</p>
+                                  <div class="event-meta">
+                                      <span>32 đã đăng ký</span>
+                                  </div>
+                              </div>
+                              <div class="event-actions">
+                                  <button class="btn btn-outline btn-sm">
+                                      <i class="fas fa-edit"></i>
+                                      Chỉnh sửa
+                                  </button>
+                              </div>
+                          </div>
+                          
+                          <div class="event-item upcoming">
+                              <div class="event-time">
+                                  <span class="time">15:30</span>
+                                  <span class="date">Chủ nhật</span>
+                              </div>
+                              <div class="event-content">
+                                  <h4>Node.js Performance Tips</h4>
+                                  <p>Tối ưu hóa hiệu suất ứng dụng Node.js</p>
+                                  <div class="event-meta">
+                                      <span>28 đã đăng ký</span>
+                                  </div>
+                              </div>
+                              <div class="event-actions">
+                                  <button class="btn btn-outline btn-sm">
+                                      <i class="fas fa-edit"></i>
+                                      Chỉnh sửa
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Webinars Grid -->
+          <div class="webinars-grid">
+              <div class="webinar-card live">
+                  <div class="webinar-thumbnail">
+                      <img src="https://via.placeholder.com/300x180" alt="Webinar">
+                      <div class="live-indicator">
+                          <i class="fas fa-circle"></i>
+                          LIVE
+                      </div>
+                      <div class="webinar-duration">45 phút</div>
+                  </div>
+                  <div class="webinar-content">
+                      <h3>JavaScript ES6+ Features</h3>
+                      <p>Tìm hiểu các tính năng mới và cách sử dụng hiệu quả JavaScript ES6+</p>
+                      <div class="webinar-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-calendar"></i>
+                              <span>15/12/2024 - 14:00</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>45 người tham gia</span>
+                          </div>
+                      </div>
+                      <div class="webinar-actions">
+                          <button class="btn btn-primary">
+                              <i class="fas fa-video"></i>
+                              Tham gia ngay
+                          </button>
+                          <button class="btn btn-outline">
+                              <i class="fas fa-share"></i>
+                              Chia sẻ
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="webinar-card upcoming">
+                  <div class="webinar-thumbnail">
+                      <img src="https://via.placeholder.com/300x180" alt="Webinar">
+                      <div class="webinar-duration">60 phút</div>
+                  </div>
+                  <div class="webinar-content">
+                      <h3>React Hooks Deep Dive</h3>
+                      <p>Khám phá sâu về React Hooks và các best practices trong development</p>
+                      <div class="webinar-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-calendar"></i>
+                              <span>18/12/2024 - 10:00</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-users"></i>
+                              <span>32 đã đăng ký</span>
+                          </div>
+                      </div>
+                      <div class="webinar-actions">
+                          <button class="btn btn-primary">
+                              <i class="fas fa-calendar-plus"></i>
+                              Đăng ký
+                          </button>
+                          <button class="btn btn-outline">
+                              <i class="fas fa-edit"></i>
+                              Chỉnh sửa
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="webinar-card completed">
+                  <div class="webinar-thumbnail">
+                      <img src="https://via.placeholder.com/300x180" alt="Webinar">
+                      <div class="webinar-duration">90 phút</div>
+                  </div>
+                  <div class="webinar-content">
+                      <h3>Node.js Best Practices</h3>
+                      <p>Các best practices và patterns trong phát triển ứng dụng Node.js</p>
+                      <div class="webinar-meta">
+                          <div class="meta-item">
+                              <i class="fas fa-calendar"></i>
+                              <span>10/12/2024 - 15:30</span>
+                          </div>
+                          <div class="meta-item">
+                              <i class="fas fa-eye"></i>
+                              <span>89 lượt xem</span>
+                          </div>
+                      </div>
+                      <div class="webinar-actions">
+                          <button class="btn btn-primary">
+                              <i class="fas fa-play"></i>
+                              Xem lại
+                          </button>
+                          <button class="btn btn-outline">
+                              <i class="fas fa-download"></i>
+                              Tải về
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+  
+  <!-- Create Webinar Modal -->
+  <div class="modal" id="createWebinarModal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>Tạo Webinar mới</h3>
+              <button class="modal-close" onclick="closeCreateWebinarModal()">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="createWebinarForm">
+                  <div class="form-group">
+                      <label for="webinarTitle">Tiêu đề Webinar</label>
+                      <input type="text" id="webinarTitle" name="webinarTitle" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="webinarDescription">Mô tả</label>
+                      <textarea id="webinarDescription" name="webinarDescription" rows="4"></textarea>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="webinarDate">Ngày & Giờ</label>
+                          <input type="datetime-local" id="webinarDate" name="webinarDate" required>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="webinarDuration">Thời lượng (phút)</label>
+                          <input type="number" id="webinarDuration" name="webinarDuration" min="15" max="300" required>
+                      </div>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="webinarMaxParticipants">Số người tham gia tối đa</label>
+                          <input type="number" id="webinarMaxParticipants" name="webinarMaxParticipants" min="1" max="1000">
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="webinarType">Loại Webinar</label>
+                          <select id="webinarType" name="webinarType" required>
+                              <option value="">Chọn loại</option>
+                              <option value="live">Trực tiếp</option>
+                              <option value="recorded">Ghi hình</option>
+                              <option value="hybrid">Kết hợp</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="webinarThumbnail">Ảnh thumbnail</label>
+                      <input type="file" id="webinarThumbnail" name="webinarThumbnail" accept="image/*">
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline" onclick="closeCreateWebinarModal()">Hủy</button>
+              <button type="submit" form="createWebinarForm" class="btn btn-primary">Tạo Webinar</button>
+          </div>
+      </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

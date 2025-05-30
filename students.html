@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý học viên - EduTeach</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+          <div class="logo">
+              <i class="fas fa-graduation-cap"></i>
+              <span>EduTeach</span>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">
+              <i class="fas fa-bars"></i>
+          </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+          <ul class="nav-list">
+              <li class="nav-item">
+                  <a href="dashboard.html" class="nav-link">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Bảng điều khiển</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="courses.html" class="nav-link">
+                      <i class="fas fa-book"></i>
+                      <span>Khóa học</span>
+                      <span class="badge">12</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="assignments.html" class="nav-link">
+                      <i class="fas fa-tasks"></i>
+                      <span>Bài tập</span>
+                      <span class="badge">38</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="exams.html" class="nav-link">
+                      <i class="fas fa-file-alt"></i>
+                      <span>Kỳ thi</span>
+                      <span class="badge">8</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="webinars.html" class="nav-link">
+                      <i class="fas fa-video"></i>
+                      <span>Webinar</span>
+                      <span class="badge">5</span>
+                  </a>
+              </li>
+              <li class="nav-item active">
+                  <a href="students.html" class="nav-link">
+                      <i class="fas fa-users"></i>
+                      <span>Học viên</span>
+                      <span class="badge">245</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="library.html" class="nav-link">
+                      <i class="fas fa-book-open"></i>
+                      <span>Thư viện</span>
+                      <span class="badge">156</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="forum.html" class="nav-link">
+                      <i class="fas fa-comments"></i>
+                      <span>Diễn đàn</span>
+                      <span class="badge">28</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="settings.html" class="nav-link">
+                      <i class="fas fa-cog"></i>
+                      <span>Cài đặt</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+          <div class="user-profile sidebar-avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar" class="user-avatar">
+              <div class="user-info">
+                  <span class="user-name">GS. Nguyễn Văn A</span>
+                  <span class="user-role">Giảng viên</span>
+              </div>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+          </button>
+      </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+          <div class="header-left">
+              <button class="mobile-menu-btn" id="mobileMenuBtn">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <h1>Quản lý học viên</h1>
+          </div>
+          
+          <div class="header-right">
+              <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Tìm kiếm học viên...">
+              </div>
+              
+              <div class="header-actions">
+                  <button class="action-btn notification-btn">
+                      <i class="fas fa-bell"></i>
+                      <span class="notification-count">3</span>
+                  </button>
+                  
+                  <div class="user-menu">
+                      <button class="user-menu-btn header-avatar" id="userMenuBtn">
+                          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Avatar" class="user-avatar-small">
+                          <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="user-dropdown" id="userDropdown">
+                          <a href="#" onclick="openAvatarModal()"><i class="fas fa-user"></i> Hồ sơ</a>
+                          <a href="settings.html"><i class="fas fa-cog"></i> Cài đặt</a>
+                          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      
+      <!-- Students Content -->
+      <div class="dashboard-content">
+          <div class="page-header">
+              <div>
+                  <h2>Danh sách học viên</h2>
+                  <p>Quản lý tất cả học viên trong hệ thống</p>
+              </div>
+              <div class="page-actions">
+                  <button class="btn btn-outline">
+                      <i class="fas fa-download"></i>
+                      Xuất Excel
+                  </button>
+                  <button class="btn btn-primary" onclick="openAddStudentModal()">
+                      <i class="fas fa-user-plus"></i>
+                      Thêm học viên
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Stats Cards -->
+          <div class="stats-grid">
+              <div class="stat-card">
+                  <div class="stat-icon">
+                      <i class="fas fa-users"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>245</h3>
+                      <p>Tổng học viên</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                      <i class="fas fa-user-check"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>198</h3>
+                      <p>Đang hoạt động</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                      <i class="fas fa-user-plus"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>15</h3>
+                      <p>Mới tuần này</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                      <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>87%</h3>
+                      <p>Tỷ lệ hoàn thành</p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Filters -->
+          <div class="filters-section">
+              <div class="filter-group">
+                  <select class="filter-select">
+                      <option value="">Tất cả trạng thái</option>
+                      <option value="active">Đang học</option>
+                      <option value="completed">Đã hoàn thành</option>
+                      <option value="inactive">Không hoạt động</option>
+                  </select>
+                  
+                  <select class="filter-select">
+                      <option value="">Sắp xếp theo</option>
+                      <option value="name">Tên A-Z</option>
+                      <option value="date">Ngày đăng ký</option>
+                      <option value="progress">Tiến độ</option>
+                  </select>
+                  
+                  <button class="btn btn-outline">
+                      <i class="fas fa-filter"></i>
+                      Lọc
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Students Grid -->
+          <div class="students-grid">
+              <!-- Student 1 -->
+              <div class="student-card">
+                  <div class="student-avatar">
+                      <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar">
+                      <div class="status-indicator active"></div>
+                  </div>
+                  <div class="student-info">
+                      <h3>Nguyễn Thị B</h3>
+                      <p>nguyenthib@example.com</p>
+                      <span class="student-id">ID: #12345</span>
+                  </div>
+                  <div class="student-progress">
+                      <div class="progress-circle">
+                          <svg viewBox="0 0 36 36">
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#4f46e5" stroke-width="3" stroke-dasharray="75, 100"/>
+                          </svg>
+                          <span>75%</span>
+                      </div>
+                      <p>Tiến độ học tập</p>
+                  </div>
+                  <div class="student-stats">
+                      <div class="stat">
+                          <span class="stat-value">8</span>
+                          <span class="stat-label">Bài tập</span>
+                      </div>
+                      <div class="stat">
+                          <span class="stat-value">8.5</span>
+                          <span class="stat-label">Điểm TB</span>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-eye"></i>
+                          Xem
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-envelope"></i>
+                          Liên hệ
+                      </button>
+                  </div>
+              </div>
+              
+              <!-- Student 2 -->
+              <div class="student-card">
+                  <div class="student-avatar">
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar">
+                      <div class="status-indicator active"></div>
+                  </div>
+                  <div class="student-info">
+                      <h3>Trần Văn C</h3>
+                      <p>tranvanc@example.com</p>
+                      <span class="student-id">ID: #12346</span>
+                  </div>
+                  <div class="student-progress">
+                      <div class="progress-circle">
+                          <svg viewBox="0 0 36 36">
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#4f46e5" stroke-width="3" stroke-dasharray="92, 100"/>
+                          </svg>
+                          <span>92%</span>
+                      </div>
+                      <p>Tiến độ học tập</p>
+                  </div>
+                  <div class="student-stats">
+                      <div class="stat">
+                          <span class="stat-value">12</span>
+                          <span class="stat-label">Bài tập</span>
+                      </div>
+                      <div class="stat">
+                          <span class="stat-value">9.2</span>
+                          <span class="stat-label">Điểm TB</span>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-eye"></i>
+                          Xem
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-envelope"></i>
+                          Liên hệ
+                      </button>
+                  </div>
+              </div>
+              
+              <!-- Student 3 -->
+              <div class="student-card">
+                  <div class="student-avatar">
+                      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar">
+                      <div class="status-indicator inactive"></div>
+                  </div>
+                  <div class="student-info">
+                      <h3>Lê Thị D</h3>
+                      <p>lethid@example.com</p>
+                      <span class="student-id">ID: #12347</span>
+                  </div>
+                  <div class="student-progress">
+                      <div class="progress-circle">
+                          <svg viewBox="0 0 36 36">
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="45, 100"/>
+                          </svg>
+                          <span>45%</span>
+                      </div>
+                      <p>Tiến độ học tập</p>
+                  </div>
+                  <div class="student-stats">
+                      <div class="stat">
+                          <span class="stat-value">3</span>
+                          <span class="stat-label">Bài tập</span>
+                      </div>
+                      <div class="stat">
+                          <span class="stat-value">7.1</span>
+                          <span class="stat-label">Điểm TB</span>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-eye"></i>
+                          Xem
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-envelope"></i>
+                          Liên hệ
+                      </button>
+                  </div>
+              </div>
+              
+              <!-- Student 4 -->
+              <div class="student-card">
+                  <div class="student-avatar">
+                      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar">
+                      <div class="status-indicator active"></div>
+                  </div>
+                  <div class="student-info">
+                      <h3>Phạm Văn E</h3>
+                      <p>phamvane@example.com</p>
+                      <span class="student-id">ID: #12348</span>
+                  </div>
+                  <div class="student-progress">
+                      <div class="progress-circle">
+                          <svg viewBox="0 0 36 36">
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="100, 100"/>
+                          </svg>
+                          <span>100%</span>
+                      </div>
+                      <p>Tiến độ học tập</p>
+                  </div>
+                  <div class="student-stats">
+                      <div class="stat">
+                          <span class="stat-value">15</span>
+                          <span class="stat-label">Bài tập</span>
+                      </div>
+                      <div class="stat">
+                          <span class="stat-value">9.8</span>
+                          <span class="stat-label">Điểm TB</span>
+                      </div>
+                  </div>
+                  <div class="student-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-eye"></i>
+                          Xem
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-envelope"></i>
+                          Liên hệ
+                      </button>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="pagination">
+              <button class="pagination-btn" disabled>
+                  <i class="fas fa-chevron-left"></i>
+              </button>
+              <span class="pagination-info">Trang 1 / 10</span>
+              <button class="pagination-btn">
+                  <i class="fas fa-chevron-right"></i>
+              </button>
+          </div>
+      </div>
+  </main>
+  
+  <!-- Add Student Modal -->
+  <div class="modal" id="addStudentModal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>Thêm học viên mới</h3>
+              <button class="modal-close" onclick="closeAddStudentModal()">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="addStudentForm">
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="studentName">Họ và tên</label>
+                          <input type="text" id="studentName" name="studentName" required>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="studentEmail">Email</label>
+                          <input type="email" id="studentEmail" name="studentEmail" required>
+                      </div>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="studentPhone">Số điện thoại</label>
+                          <input type="tel" id="studentPhone" name="studentPhone">
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="studentClass">Lớp học</label>
+                          <select id="studentClass" name="studentClass" required>
+                              <option value="">Chọn lớp học</option>
+                              <option value="javascript">JavaScript cơ bản</option>
+                              <option value="react">React Advanced</option>
+                              <option value="nodejs">Node.js Backend</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="studentNote">Ghi chú</label>
+                      <textarea id="studentNote" name="studentNote" rows="3"></textarea>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline" onclick="closeAddStudentModal()">Hủy</button>
+              <button type="submit" form="addStudentForm" class="btn btn-primary">Thêm học viên</button>
+          </div>
+      </div>
+  </div>
+  
+  <!-- Avatar Management Modal -->
+<div class="modal avatar-modal" id="avatarModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Quản lý Avatar</h3>
+            <button class="modal-close" onclick="closeAvatarModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="avatar-tabs">
+                <button class="avatar-tab active" data-tab="upload">Tải lên</button>
+                <button class="avatar-tab" data-tab="gallery">Thư viện</button>
+            </div>
+            
+            <!-- Upload Tab -->
+            <div class="avatar-tab-content active" id="upload-tab">
+                <div class="avatar-upload-area" onclick="document.getElementById('avatarInput').click()">
+                    <div class="upload-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="upload-text">Tải lên ảnh đại diện</div>
+                    <div class="upload-hint">JPG, PNG tối đa 5MB</div>
+                    <input type="file" id="avatarInput" style="display: none;" accept="image/*">
+                </div>
+                
+                <div class="avatar-preview" style="display: none;">
+                    <img src="/placeholder.svg" alt="Preview" class="avatar-preview-image">
+                    <div class="avatar-preview-info">
+                        <h4>Xem trước</h4>
+                        <p>Ảnh đại diện mới của bạn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Tab -->
+            <div class="avatar-tab-content" id="gallery-tab">
+                <div class="avatar-gallery">
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 1">
+                    </div>
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2">
+                    </div>
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 3">
+                    </div>
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 4">
+                    </div>
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5">
+                    </div>
+                    <div class="avatar-option" data-avatar="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face" alt="Avatar 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" onclick="closeAvatarModal()">Hủy</button>
+            <button type="button" class="btn btn-primary" onclick="saveAvatar()">Lưu thay đổi</button>
+        </div>
+    </div>
+</div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

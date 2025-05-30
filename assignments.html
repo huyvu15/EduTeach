@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý bài tập - EduTeach</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+          <div class="logo">
+              <i class="fas fa-graduation-cap"></i>
+              <span>EduTeach</span>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">
+              <i class="fas fa-bars"></i>
+          </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+          <ul class="nav-list">
+              <li class="nav-item">
+                  <a href="dashboard.html" class="nav-link">
+                      <i class="fas fa-tachometer-alt"></i>
+                      <span>Bảng điều khiển</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="courses.html" class="nav-link">
+                      <i class="fas fa-book"></i>
+                      <span>Khóa học</span>
+                      <span class="badge">12</span>
+                  </a>
+              </li>
+              <li class="nav-item active">
+                  <a href="assignments.html" class="nav-link">
+                      <i class="fas fa-tasks"></i>
+                      <span>Bài tập</span>
+                      <span class="badge">38</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="exams.html" class="nav-link">
+                      <i class="fas fa-file-alt"></i>
+                      <span>Kỳ thi</span>
+                      <span class="badge">8</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="webinars.html" class="nav-link">
+                      <i class="fas fa-video"></i>
+                      <span>Webinar</span>
+                      <span class="badge">5</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="students.html" class="nav-link">
+                      <i class="fas fa-users"></i>
+                      <span>Học viên</span>
+                      <span class="badge">245</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="library.html" class="nav-link">
+                      <i class="fas fa-book-open"></i>
+                      <span>Thư viện</span>
+                      <span class="badge">156</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="forum.html" class="nav-link">
+                      <i class="fas fa-comments"></i>
+                      <span>Diễn đàn</span>
+                      <span class="badge">28</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="settings.html" class="nav-link">
+                      <i class="fas fa-cog"></i>
+                      <span>Cài đặt</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+          <div class="user-profile">
+              <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+              <div class="user-info">
+                  <span class="user-name">GS. Nguyễn Văn A</span>
+                  <span class="user-role">Giảng viên</span>
+              </div>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+          </button>
+      </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+          <div class="header-left">
+              <button class="mobile-menu-btn" id="mobileMenuBtn">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <h1>Quản lý bài tập</h1>
+          </div>
+          
+          <div class="header-right">
+              <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Tìm kiếm bài tập...">
+              </div>
+              
+              <div class="header-actions">
+                  <button class="action-btn notification-btn">
+                      <i class="fas fa-bell"></i>
+                      <span class="notification-count">3</span>
+                  </button>
+                  
+                  <div class="user-menu">
+                      <button class="user-menu-btn" id="userMenuBtn">
+                          <img src="https://via.placeholder.com/32" alt="Avatar" class="user-avatar-small">
+                          <i class="fas fa-chevron-down"></i>
+                      </button>
+                      <div class="user-dropdown" id="userDropdown">
+                          <a href="#"><i class="fas fa-user"></i> Hồ sơ</a>
+                          <a href="#"><i class="fas fa-cog"></i> Cài đặt</a>
+                          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      
+      <!-- Assignments Content -->
+      <div class="dashboard-content">
+          <div class="page-header">
+              <div>
+                  <h2>Danh sách bài tập</h2>
+                  <p>Quản lý và theo dõi bài tập của học viên</p>
+              </div>
+              <button class="btn btn-primary" onclick="openCreateModal()">
+                  <i class="fas fa-plus"></i>
+                  Tạo bài tập mới
+              </button>
+          </div>
+          
+          <!-- Assignment Stats -->
+          <div class="stats-grid">
+              <div class="stat-card">
+                  <div class="stat-icon">
+                      <i class="fas fa-tasks"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>38</h3>
+                      <p>Tổng bài tập</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                      <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>12</h3>
+                      <p>Chờ chấm điểm</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                      <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>156</h3>
+                      <p>Đã hoàn thành</p>
+                  </div>
+              </div>
+              
+              <div class="stat-card">
+                  <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                      <i class="fas fa-star"></i>
+                  </div>
+                  <div class="stat-info">
+                      <h3>8.5</h3>
+                      <p>Điểm trung bình</p>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Assignment Tabs -->
+          <div class="tabs-container">
+              <div class="tabs">
+                  <button class="tab-btn active" data-tab="all">Tất cả bài tập</button>
+                  <button class="tab-btn" data-tab="pending">Chờ chấm điểm</button>
+                  <button class="tab-btn" data-tab="graded">Đã chấm điểm</button>
+                  <button class="tab-btn" data-tab="overdue">Quá hạn</button>
+              </div>
+          </div>
+          
+          <!-- Assignments List -->
+          <div class="assignments-container">
+              <div class="assignment-card">
+                  <div class="assignment-header">
+                      <div class="assignment-info">
+                          <h3>Bài tập HTML Forms</h3>
+                          <p>JavaScript cơ bản - Bài 5</p>
+                      </div>
+                      <div class="assignment-status">
+                          <span class="status-badge pending">Chờ chấm điểm</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-meta">
+                      <div class="meta-item">
+                          <i class="fas fa-calendar"></i>
+                          <span>Hạn nộp: 18/12/2024</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-users"></i>
+                          <span>45 học viên</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-file-alt"></i>
+                          <span>32 bài nộp</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-progress">
+                      <div class="progress-bar">
+                          <div class="progress-fill" style="width: 71%"></div>
+                      </div>
+                      <span class="progress-text">71% đã nộp bài</span>
+                  </div>
+                  
+                  <div class="assignment-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-eye"></i>
+                          Xem chi tiết
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-check"></i>
+                          Chấm điểm
+                      </button>
+                  </div>
+              </div>
+              
+              <div class="assignment-card">
+                  <div class="assignment-header">
+                      <div class="assignment-info">
+                          <h3>Bài tập CSS Flexbox</h3>
+                          <p>Frontend Development - Bài 3</p>
+                      </div>
+                      <div class="assignment-status">
+                          <span class="status-badge completed">Đã hoàn thành</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-meta">
+                      <div class="meta-item">
+                          <i class="fas fa-calendar"></i>
+                          <span>Hạn nộp: 15/12/2024</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-users"></i>
+                          <span>38 học viên</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-star"></i>
+                          <span>Điểm TB: 8.7</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-progress">
+                      <div class="progress-bar">
+                          <div class="progress-fill completed" style="width: 100%"></div>
+                      </div>
+                      <span class="progress-text">100% đã hoàn thành</span>
+                  </div>
+                  
+                  <div class="assignment-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-chart-bar"></i>
+                          Xem báo cáo
+                      </button>
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-edit"></i>
+                          Chỉnh sửa
+                      </button>
+                  </div>
+              </div>
+              
+              <div class="assignment-card">
+                  <div class="assignment-header">
+                      <div class="assignment-info">
+                          <h3>Project cuối khóa React</h3>
+                          <p>React Advanced - Final Project</p>
+                      </div>
+                      <div class="assignment-status">
+                          <span class="status-badge overdue">Quá hạn</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-meta">
+                      <div class="meta-item">
+                          <i class="fas fa-calendar"></i>
+                          <span>Hạn nộp: 10/12/2024</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-users"></i>
+                          <span>25 học viên</span>
+                      </div>
+                      <div class="meta-item">
+                          <i class="fas fa-file-alt"></i>
+                          <span>18 bài nộp</span>
+                      </div>
+                  </div>
+                  
+                  <div class="assignment-progress">
+                      <div class="progress-bar">
+                          <div class="progress-fill overdue" style="width: 72%"></div>
+                      </div>
+                      <span class="progress-text">72% đã nộp bài</span>
+                  </div>
+                  
+                  <div class="assignment-actions">
+                      <button class="btn btn-outline btn-sm">
+                          <i class="fas fa-clock"></i>
+                          Gia hạn
+                      </button>
+                      <button class="btn btn-primary btn-sm">
+                          <i class="fas fa-check"></i>
+                          Chấm điểm
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main>
+  
+  <!-- Create Assignment Modal -->
+  <div class="modal" id="createModal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>Tạo bài tập mới</h3>
+              <button class="modal-close" onclick="closeCreateModal()">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="createAssignmentForm">
+                  <div class="form-group">
+                      <label for="assignmentTitle">Tiêu đề bài tập</label>
+                      <input type="text" id="assignmentTitle" name="assignmentTitle" required>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="assignmentDescription">Mô tả</label>
+                      <textarea id="assignmentDescription" name="assignmentDescription" rows="4"></textarea>
+                  </div>
+                  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="dueDate">Hạn nộp</label>
+                          <input type="datetime-local" id="dueDate" name="dueDate" required>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="maxScore">Điểm tối đa</label>
+                          <input type="number" id="maxScore" name="maxScore" min="1" max="100" value="10">
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="assignmentFile">Tệp đính kèm</label>
+                      <input type="file" id="assignmentFile" name="assignmentFile" multiple>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline" onclick="closeCreateModal()">Hủy</button>
+              <button type="submit" form="createAssignmentForm" class="btn btn-primary">Tạo bài tập</button>
+          </div>
+      </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
